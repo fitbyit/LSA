@@ -1,36 +1,30 @@
 
 # 🛠️ Setting Up SSH on RHEL Server
 
-This guide outlines the steps to install, configure, and secure the SSH server on a RHEL (Red Hat Enterprise Linux) system.
-
 ---
 
-## 📌 Step 1: Install OpenSSH Server
+## 📌 Step 1: Install OpenSSH Server if not 
 
 ```bash
-sudo dnf install -y openssh-server
+yum install -y openssh-server
 ```
 
 ---
 
-## 📌 Step 2: Enable and Start SSH Service
+## ✅ Step 2: Verify SSH Service Status
 
 ```bash
-sudo systemctl enable sshd
-sudo systemctl start sshd
+service sshd status
+```
+
+> if not running then start the service
+```bash
+service sshd start
 ```
 
 ---
 
-## ✅ Step 3: Verify SSH Service Status
-
-```bash
-sudo systemctl status sshd
-```
-
----
-
-## 🔥 Step 4: Allow SSH in the Firewall (if enabled)
+## 🔥 Step 3: Allow SSH in the Firewall (if enabled)
 
 ```bash
 sudo firewall-cmd --permanent --add-service=ssh
@@ -39,82 +33,94 @@ sudo firewall-cmd --reload
 
 ---
 
-## 🔒 Step 5: SSH Server Configuration (Optional)
+## 🔒 Step 4: SSH Server Configuration
 
 Edit the SSH configuration file:
 
 ```bash
-sudo nano /etc/ssh/sshd_config
+gedit /etc/ssh/sshd_config
 ```
 
 ### Common Configuration Options:
-- Change port (default is 22):
-  ```
-  Port 2222
-  ```
 - Disable root login:
   ```
   PermitRootLogin no
   ```
 - Allow only specific users:
   ```
-  AllowUsers youruser
+  AllowUsers username
   ```
+- Password Authentication
+  ```
+  PasswordAuthentication yes
+  ``` 
 
 After editing, restart SSH:
 
 ```bash
-sudo systemctl restart sshd
+service sshd restart
 ```
+
+## 🔐 Step 5: Check IP address
+```bash
+ifconfig
+```
+> Note Down your server ip address
+
+## 🔐 Step 6: On Client Machine (Windows) on CMD 
+```
+ssh username@serverip
+```
+> enter password for the spcified user
+
 
 ---
 
-## 🔐 Step 6: Set Up Key-Based Authentication (Optional)
+## 🔐 To Setup Key-Based Authentication
 
 1. Generate SSH Key Pair on Client:
    ```bash
-   ssh-keygen -t rsa -b 4096
+   ssh-keygen -t rsa
    ```
+  
+  > press enter to store in default location and enter passphrase to genreate private key
+  
+  > Note : Remember Passphrase as it will be used to verify your private key while connecting
 
 2. Copy the public key to the RHEL server:
+
+> if clinet if linux machine 
+
    ```bash
    ssh-copy-id user@rhel-server-ip
    ```
 
-3. Now login without password:
+> if client is windows machine : Open cmd on .ssh path
+  
+  ```
+  scp id_rsa.pub user@rhel-server-ip:~/.ssh/authorized_keys
+  ```
+  
+3. Edit sshd_config
+  Edit `/etc/ssh/sshd_config`:
+  ```
+  PasswordAuthentication no
+  ```
+  Then restart the SSH service:
+  
+  ```bash
+  service sshd restart
+  ```
+
+5. Now login without password using client machine:
+
    ```bash
    ssh user@rhel-server-ip
    ```
+   > `Note:` Can Ask to enter passphrase to verify client's private key
 
 ---
 
-## 🧪 Step 7: Test SSH Connection
-
-```bash
-ssh user@rhel-server-ip
-```
-
-If you changed the port:
-```bash
-ssh -p 2222 user@rhel-server-ip
-```
-
----
-
-## 🚫 Optional: Disable Password Authentication (More Secure)
-
-Edit `/etc/ssh/sshd_config`:
-```
-PasswordAuthentication no
-```
-
-Then restart the SSH service:
-
-```bash
-sudo systemctl restart sshd
-```
-
----
 
 ## ✅ Done!
 
