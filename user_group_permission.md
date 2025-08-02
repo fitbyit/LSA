@@ -198,5 +198,3 @@ sudo groupdel groupname
 | Change group ownership | `chown :students /students`  |
 | Set permissions        | `chmod 770 /students`        |
 | Set sticky bit         | `chmod +t /students`         |
-
-```
