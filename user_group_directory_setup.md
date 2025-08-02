@@ -1,19 +1,16 @@
 
-# 👥 User and Group Management with Permissions on RHEL
+# User and Group Management with Permissions on RHEL
 
-This guide walks through creating users, groups, directories, assigning permissions, and setting the sticky bit on RHEL.
 
----
-
-## 👤 Step 1: Create Users
+## Step 1: Create Users
 
 Create four users: `user1`, `user2`, `acc1`, `acc2`.
 
 ```bash
-sudo adduser user1
-sudo adduser user2
-sudo adduser acc1
-sudo adduser acc2
+ useradd user1
+ useradd user2
+ useradd acc1
+ auseradd acc2
 ```
 
 ---
@@ -23,8 +20,8 @@ sudo adduser acc2
 Create two groups: `students` and `office`.
 
 ```bash
-sudo groupadd students
-sudo groupadd office
+ groupadd students
+ groupadd office
 ```
 
 ---
@@ -34,15 +31,21 @@ sudo groupadd office
 Add `user1` and `user2` to the `students` group:
 
 ```bash
-sudo usermod -aG students user1
-sudo usermod -aG students user2
+ usermod -aG students user1
+ usermod -aG students user2
 ```
 
 Add `acc1` and `acc2` to the `office` group:
 
 ```bash
-sudo usermod -aG office acc1
-sudo usermod -aG office acc2
+ usermod -aG office acc1
+ usermod -aG office acc2
+```
+
+To verify 
+```bash
+id user1
+id acc1
 ```
 
 ---
@@ -52,8 +55,13 @@ sudo usermod -aG office acc2
 Create directories for each group:
 
 ```bash
-sudo mkdir /students
-sudo mkdir /office
+ mkdir /students
+ mkdir /office
+```
+
+Check Existing Permision and Ownership
+```bash
+ls -l
 ```
 
 ---
@@ -63,8 +71,13 @@ sudo mkdir /office
 Assign group ownership of each directory:
 
 ```bash
-sudo chown :students /students
-sudo chown :office /office
+ chown :students /students
+ chown :office /office
+```
+
+Check Ownership
+```bash
+ls -l
 ```
 
 ---
@@ -74,8 +87,8 @@ sudo chown :office /office
 Give read/write/execute access to group members only:
 
 ```bash
-sudo chmod 770 /students
-sudo chmod 770 /office
+ chmod 770 /students
+ chmod 770 /office
 ```
 
 This means:
@@ -90,8 +103,8 @@ This means:
 Set the **sticky bit** to prevent users from deleting each other’s files within the shared directory.
 
 ```bash
-sudo chmod +t /students
-sudo chmod +t /office
+ chmod +t /students
+ chmod +t /office
 ```
 
 Now only file **owners** and **root** can delete files inside those directories.
