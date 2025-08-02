@@ -13,6 +13,12 @@ Create four users: `user1`, `user2`, `acc1`, `acc2`.
  useradd acc2
 ```
 
+### 🔑 Set Password for User
+```bash
+passwd user1
+```
+> `Note:` Do same for all other user's 
+
 ---
 
 ## 👪 Step 2: Create Groups
@@ -82,6 +88,54 @@ ls -l
 
 ---
 
+## 🔐 File and Directory Permissions
+
+### 📄 Permission Types
+
+| Symbol | Meaning         |
+|--------|------------------|
+| r      | Read             |
+| w      | Write            |
+| x      | Execute          |
+| -      | No permission    |
+
+### 👥 Ownership Structure
+```bash
+-rwxr-xr-- 1 owner group filename
+```
+
+- Owner: `rwx`
+- Group: `r-x`
+- Others: `r--`
+
+---
+
+### 🔄 Change Ownership
+```bash
+sudo chown newowner:newgroup filename
+```
+
+---
+
+### ✏️ Change Permissions
+
+#### Numeric Format
+```bash
+chmod 755 filename
+```
+
+| Number | Permission |
+|--------|------------|
+| 7      | rwx        |
+| 6      | rw-        |
+| 5      | r-x        |
+| 4      | r--        |
+| 3      | -wx        |
+| 2      | -w-        |
+| 1      | --x        |
+| 0      | ---        |
+
+
 ## ✏️ Step 6: Set Directory Permissions
 
 Give read/write/execute access to group members only:
@@ -122,6 +176,27 @@ Expected output:
 drwxrwx--T 2 root students 4096 ... /students
 drwxrwx--T 2 root office   4096 ... /office
 ```
+
+### ❌ Delete a User
+```bash
+userdel user1
+```
+
+To remove user home directory as well:
+```bash
+userdel -r user1
+```
+
+### 🔍 View User Groups
+```bash
+groups username
+```
+
+### ❌ Delete a Group
+```bash
+sudo groupdel groupname
+```
+
 
 ---
 
