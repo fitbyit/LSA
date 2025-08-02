@@ -10,7 +10,7 @@ Create four users: `user1`, `user2`, `acc1`, `acc2`.
  useradd user1
  useradd user2
  useradd acc1
- auseradd acc2
+ useradd acc2
 ```
 
 ---
