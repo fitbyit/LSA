@@ -87,8 +87,6 @@ gpgcheck=0
 ---
 
 
----
-
 ### 🔍 5. List all enabled repositories
 
 ```bash
