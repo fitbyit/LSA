@@ -7,12 +7,29 @@
 In the configuration file `/etc/anacrontab` each job is written as:
 
 ```
+#Sample File
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+RANDOM_DELAY=45
+START_HOURS_RANGE=3-22
+
+# period delay job-identifier command
+@daily 5 backup /home/user/backup.sh
+@weekly 10 cleanup /usr/local/bin/cleanup.sh
+@monthly 15 logs /usr/local/bin/logrotate.sh
+```
+
+```
 period delay job-identifier command
 ```
 - **period:** How often, in days, the job should run (e.g., 1 for daily, 7 for weekly)
 - **delay:** How many minutes after system boot before the job is run
 - **job-identifier:** A short label for the job
 - **command:** The script or command to execute
+- - **RANDOM_DELAY:** Randomized delay to spread job start times
+- **START_HOURS_RANGE:** Allowed time range for jobs to run
+- **MAILTO / MAILFROM:** Email settings for output notifications
 
 ### Example of anacrontab entry
 
