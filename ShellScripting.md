@@ -26,7 +26,7 @@ chmod +x hello.sh        # Gives permission to run the script
 
 ## Variables
  We can declare a variable in a bash script using VariableName=Value and can access it using $VariableName.
-```
+```bash
 name="Alice"
 age=18
 echo "Hello, $name my age is $age"
@@ -39,7 +39,7 @@ echo "Hello, $name my age is $age"
 
 ## Comments
 
-```
+```bash
 # This is a comment
 ```
 
@@ -51,7 +51,7 @@ echo "Hello, $name my age is $age"
 
 #### Syntax of If-else statement:
 
-```
+```bash
 if [ expression ]; then
     statements
 elif [ expression ]; then
@@ -61,7 +61,7 @@ else
 fi
 ```
 > Example : 
-```
+```bash
 num=5
 if [ $num -gt 3 ]; then
   echo "Greater than 3"
@@ -86,7 +86,7 @@ for i in 1 2 3; do
   echo "Number $i"
 done
 ```
-```
+```bash
 for i in {1..5}; do
   echo "Number $i"
 done
@@ -100,7 +100,7 @@ done
 
 ### While Loop
 
-```
+```bash
 count=1
 while [ $count -le 3 ]; do
   echo "Count $count"
@@ -110,7 +110,7 @@ done
 
 ### Until Loop
 
-```
+```bash
 count=10
 until [ $count -ge 0 ]; do
   echo "Count $count"
@@ -120,13 +120,13 @@ done
 
 ## 6. Reading Input
 
-```
+```bash
 echo "Enter your name:"
 read username
 echo "Your name is $username"
 ```
 
-```
+```bash
 read -p "Enter your name: " username
 echo "Your name is $username"
 ```
@@ -135,7 +135,7 @@ echo "Your name is $username"
 
 ## Functions
 
-```
+```bash
 greet() {
   echo "Hello, $1"
 }
@@ -147,7 +147,7 @@ greet "Bob"
 
 ## Files and  Directory Validation
 
-```
+```bash
 #!/bin/bash
 
 directory="/path/to/directory"  # Change this to your directory path
@@ -177,7 +177,7 @@ fi
 - `$#`: Number of arguments
 - `$@`: All arguments
 
-```
+```bash
 #!/bin/bash
 echo "Script name: $0"
 echo "First argument: $1"
@@ -195,7 +195,7 @@ done
 
 ### Default Argument Values
 
-```
+```bash
 name=${1:-"Anonymous"}
 echo "Hello, $name"
 ```
@@ -204,7 +204,7 @@ echo "Hello, $name"
 
 ## Argument Validation
 
-```
+```bash
 if [ $# -lt 2 ]; then
   echo "Usage: $0 arg1 arg2"
   exit 1
@@ -215,7 +215,7 @@ fi
 
 ## Case 
 
-```
+```bash
 #!/bin/bash
 read -p "Enter Number: " opt
   case $opt in
@@ -234,7 +234,7 @@ read -p "Enter Number: " opt
 
 ## Practical Exercise
  To count no. of Lines in some text file.
-```
+```bash
 #!/bin/bash
 echo "Enter filename:"
 read fname
