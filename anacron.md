@@ -20,6 +20,7 @@ START_HOURS_RANGE=3-22
 @monthly 15 logs /usr/local/bin/logrotate.sh
 ```
 
+Syntax : 
 ```
 period delay job-identifier command
 ```
@@ -27,7 +28,7 @@ period delay job-identifier command
 - **delay:** How many minutes after system boot before the job is run
 - **job-identifier:** A short label for the job
 - **command:** The script or command to execute
-- - **RANDOM_DELAY:** Randomized delay to spread job start times
+- **RANDOM_DELAY:** Randomized delay to spread job start times
 - **START_HOURS_RANGE:** Allowed time range for jobs to run
 - **MAILTO / MAILFROM:** Email settings for output notifications
 
