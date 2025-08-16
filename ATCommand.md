@@ -69,3 +69,64 @@ echo "/path/to/backup.sh" | batch
 ***
 
 The `at` command is a simple yet powerful tool for one-time scheduled tasks, providing flexibility beyond typical cron usage.
+
+
+The **`at` command** in Linux supports a variety of time formats to specify when the scheduled job should run. These formats are flexible and allow you to express exact times, relative times, or special terms.
+
+### Various Time Formats Supported by `at` Command
+
+#### 1. Exact Time (24-hour or 12-hour clock)
+- Examples:
+  - `14:30` (2:30 PM)
+  - `1430` (2:30 PM)
+  - `2:30 PM`
+  - `5pm`
+
+#### 2. Special Keywords (for common times)
+- `now` — immediately run the job
+- `midnight` — 12:00 AM (00:00)
+- `noon` — 12:00 PM (12:00)
+- `teatime` — 4:00 PM
+
+#### 3. Relative Times (offset from current time)
+- `now + 5 minutes`
+- `now + 2 hours`
+- `now + 1 day`
+- `now + 3 weeks`
+
+#### 4. Specific Dates (with time)
+- `10:00 08/20/2025` (10:00 AM on August 20, 2025, MM/DD/YYYY)
+- `23:15 20.08.2025` (11:15 PM on August 20, 2025, DD.MM.YYYY)
+
+#### 5. Named Days and Times
+- `9 AM tomorrow`
+- `5pm next Monday`
+- `noon next Friday`
+
+***
+
+### Examples Using Time Formats with `at`
+
+- Run at 5 PM today:
+  ```
+  at 5 PM
+  ```
+- Run at midnight tomorrow:
+  ```
+  at midnight tomorrow
+  ```
+- Run 10 minutes from now:
+  ```
+  at now + 10 minutes
+  ```
+- Run at 8:30 AM on October 10, 2025:
+  ```
+  at 08:30 10/10/2025
+  ```
+- Run at 4 PM next Monday:
+  ```
+  at 4 PM next Monday
+  ```
+
+***
+
