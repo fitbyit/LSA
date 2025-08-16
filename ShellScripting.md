@@ -118,7 +118,7 @@ until [ $count -ge 0 ]; do
 done
 ```
 
-## 6. Reading Input
+## Reading User Input
 
 ```bash
 echo "Enter your name:"
